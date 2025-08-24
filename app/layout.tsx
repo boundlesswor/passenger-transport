@@ -2,6 +2,7 @@ import type React from "react"
 import type { Metadata } from "next"
 import { DM_Sans, Space_Grotesk } from "next/font/google"
 import "./globals.css"
+// удаляю импорт ThemeToggle
 
 const dmSans = DM_Sans({
   subsets: ["latin"],
@@ -18,13 +19,13 @@ const spaceGrotesk = Space_Grotesk({
 })
 
 export const metadata: Metadata = {
-  title: "CONSTANTA TUR | Революционные перевозки по Европе",
+  title: "PULSE LINE | Революционные перевозки по Европе",
   description:
     "Футуристические пассажирские перевозки с интерактивной 3D картой. Голографический опыт бронирования поездок по Европе.",
   generator: "v0.app",
   keywords: "пассажирские перевозки, микроавтобус, Европа, трансфер, поездки, 3D карта, голографический",
   openGraph: {
-    title: "CONSTANTA TUR | Революционные перевозки",
+    title: "PULSE LINE | Революционные перевозки",
     description: "Футуристические поездки с интерактивной 3D картой Европы",
     type: "website",
   },
@@ -36,8 +37,9 @@ export default function RootLayout({
   children: React.ReactNode
 }>) {
   return (
-    <html lang="ru" className={`${dmSans.variable} ${spaceGrotesk.variable} dark`}>
+    <html lang="ru" className={`${dmSans.variable} ${spaceGrotesk.variable}`}>
       <head>
+        <link rel="icon" type="image/png" href="/favicon.png" />
         <style>{`
 html {
   font-family: ${dmSans.style.fontFamily};
@@ -46,7 +48,7 @@ html {
 }
         `}</style>
       </head>
-      <body className="font-sans antialiased">{children}</body>
+      <body className="font-sans antialiased bg-background text-foreground">{children}</body>
     </html>
   )
 }

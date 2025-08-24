@@ -315,15 +315,15 @@ export default function HomePage() {
         <Container>
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 sm:gap-10 lg:gap-12 px-4 sm:px-5 md:px-6">
             <div className="space-y-4 sm:space-y-6 text-center sm:text-left">
-              <h3 className="text-xl sm:text-2xl font-bold font-space-grotesk text-foreground">CONSTANTA TUR</h3>
+              <h3 className="text-xl sm:text-2xl font-bold font-space-grotesk text-foreground">PULSE LINE</h3>
               <div className="space-y-2 sm:space-y-3 text-muted-foreground text-sm sm:text-base">
                 <div className="flex items-center gap-3 justify-center sm:justify-start">
                   <Phone className="w-4 h-4 sm:w-5 sm:h-5 text-primary flex-shrink-0" />
-                  <span>+380 (XX) XXX-XX-XX</span>
+                  <span>+380966158586</span>
                 </div>
                 <div className="flex items-center gap-3 justify-center sm:justify-start">
                   <Mail className="w-4 h-4 sm:w-5 sm:h-5 text-primary flex-shrink-0" />
-                  <span className="truncate">info@constantatur.com</span>
+                  <span className="truncate">puilseline@gmail.com</span>
                 </div>
                 <div className="flex items-center gap-3 justify-center sm:justify-start">
                   <MapPin className="w-4 h-4 sm:w-5 sm:h-5 text-primary flex-shrink-0" />
@@ -361,16 +361,45 @@ export default function HomePage() {
             <div className="space-y-4 sm:space-y-6 text-center sm:text-left sm:col-span-2 lg:col-span-1">
               <h3 className="text-lg sm:text-xl font-semibold font-space-grotesk text-foreground">Связь</h3>
               <div className="space-y-2 sm:space-y-3 text-muted-foreground text-sm sm:text-base">
-                <div>Telegram: @constantatur</div>
-                <div>WhatsApp: +380 (XX) XXX-XX-XX</div>
+                <div className="flex items-center gap-3 justify-center sm:justify-start">
+                  <svg
+                    className="w-4 h-4 sm:w-5 sm:h-5 text-primary flex-shrink-0"
+                    fill="currentColor"
+                    viewBox="0 0 24 24"
+                  >
+                    <path d="M11.944 0A12 12 0 0 0 0 12a12 12 0 0 0 12 12 12 12 0 0 0 12-12A12 12 0 0 0 12 0a12 12 0 0 0-.056 0zm4.962 7.224c.1-.002.321.023.465.14a.506.506 0 0 1 .171.325c.016.093.036.306.02.472-.18 1.898-.962 6.502-1.36 8.627-.168.9-.499 1.201-.82 1.23-.696.065-1.225-.46-1.9-.902-1.056-.693-1.653-1.124-2.678-1.8-1.185-.78-.417-1.21.258-1.91.177-.184 3.247-2.977 3.307-3.23.007-.032.014-.15-.056-.212s-.174-.041-.249-.024c-.106.024-1.793 1.14-5.061 3.345-.48.33-.913.49-1.302.48-.428-.008-1.252-.241-1.865-.44-.752-.245-1.349-.374-1.297-.789.027-.216.325-.437.893-.663 3.498-1.524 5.83-2.529 6.998-3.014 3.332-1.386 4.025-1.627 4.476-1.635z" />
+                  </svg>
+                  <Link
+                    href="https://t.me/pulselinecom"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="hover:text-primary transition-colors duration-200"
+                  >
+                    @pulselinecom
+                  </Link>
+                </div>
+                <div>WhatsApp: +380966158586</div>
                 <div>Поддержка: 24/7</div>
+                <div className="pt-2">
+                  <Link
+                    href="https://t.me/pulselinecom"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="inline-flex items-center gap-2 px-4 py-2 bg-primary/10 hover:bg-primary/20 rounded-lg transition-all duration-200 hover:scale-105 text-primary font-medium"
+                  >
+                    <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
+                      <path d="M11.944 0A12 12 0 0 0 0 12a12 12 0 0 0 12 12 12 12 0 0 0 12-12A12 12 0 0 0 12 0a12 12 0 0 0-.056 0zm4.962 7.224c.1-.002.321.023.465.14a.506.506 0 0 1 .171.325c.016.093.036.306.02.472-.18 1.898-.962 6.502-1.36 8.627-.168.9-.499 1.201-.82 1.23-.696.065-1.225-.46-1.9-.902-1.056-.693-1.653-1.124-2.678-1.8-1.185-.78-.417-1.21.258-1.91.177-.184 3.247-2.977 3.307-3.23.007-.032.014-.15-.056-.212s-.174-.041-.249-.024c-.106.024-1.793 1.14-5.061 3.345-.48.33-.913.49-1.302.48-.428-.008-1.252-.241-1.865-.44-.752-.245-1.349-.374-1.297-.789.027-.216.325-.437.893-.663 3.498-1.524 5.83-2.529 6.998-3.014 3.332-1.386 4.025-1.627 4.476-1.635z" />
+                    </svg>
+                    Наш канал
+                  </Link>
+                </div>
               </div>
             </div>
           </div>
 
           <div className="border-t border-border mt-8 sm:mt-10 lg:mt-12 pt-6 sm:pt-8 text-center px-4 sm:px-5 md:px-6">
             <p className="text-muted-foreground text-sm sm:text-base">
-              © {new Date().getFullYear()} CONSTANTA TUR. Надежные перевозки из Киева по Европе.
+              © {new Date().getFullYear()} PULSE LINE. Надежные перевозки из Киева по Европе.
             </p>
           </div>
         </Container>

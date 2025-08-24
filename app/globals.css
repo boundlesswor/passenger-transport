@@ -4,40 +4,40 @@
 @custom-variant dark (&:is(.dark *));
 
 :root {
-  /* Updated to futuristic emerald color scheme */
-  --background: #ffffff;
-  --foreground: #374151;
-  --card: #f1f5f9;
-  --card-foreground: #000000;
-  --popover: rgba(255, 255, 255, 0.9);
-  --popover-foreground: #374151;
-  --primary: #059669; /* Emerald primary */
-  --primary-foreground: #ffffff;
-  --secondary: #10b981; /* Bright emerald accent */
+  /* Updated light theme colors for better contrast and readability */
+  --background: #0a0a0a;
+  --foreground: #ffffff;
+  --card: #1a1a1a;
+  --card-foreground: #ffffff;
+  --popover: #1a1a1a;
+  --popover-foreground: #ffffff;
+  --primary: #10b981; /* Emerald primary */
+  --primary-foreground: #000000;
+  --secondary: #059669; /* Bright emerald accent */
   --secondary-foreground: #ffffff;
-  --muted: #f1f5f9;
-  --muted-foreground: #475569;
-  --accent: #10b981; /* Emerald accent */
-  --accent-foreground: #ffffff;
-  --destructive: #be123c;
+  --muted: #262626;
+  --muted-foreground: #a3a3a3;
+  --accent: #34d399;
+  --accent-foreground: #000000;
+  --destructive: #ef4444;
   --destructive-foreground: #ffffff;
-  --border: #e0e0e0;
-  --input: #ffffff;
-  --ring: rgba(0, 0, 0, 0.1);
-  --chart-1: #059669;
-  --chart-2: #10b981;
-  --chart-3: #d97706;
-  --chart-4: #be123c;
-  --chart-5: #475569;
+  --border: #404040;
+  --input: #262626;
+  --ring: rgba(16, 185, 129, 0.3);
+  --chart-1: #10b981;
+  --chart-2: #059669;
+  --chart-3: #f59e0b;
+  --chart-4: #ef4444;
+  --chart-5: #8b5cf6;
   --radius: 0.5rem;
-  --sidebar: #f1f5f9;
-  --sidebar-foreground: #374151;
-  --sidebar-primary: #059669;
-  --sidebar-primary-foreground: #ffffff;
-  --sidebar-accent: #10b981;
+  --sidebar: #1a1a1a;
+  --sidebar-foreground: #ffffff;
+  --sidebar-primary: #10b981;
+  --sidebar-primary-foreground: #000000;
+  --sidebar-accent: #262626;
   --sidebar-accent-foreground: #ffffff;
-  --sidebar-border: #e0e0e0;
-  --sidebar-ring: rgba(0, 0, 0, 0.1);
+  --sidebar-border: #404040;
+  --sidebar-ring: rgba(16, 185, 129, 0.3);
 }
 
 .dark {
@@ -124,18 +124,26 @@
     @apply bg-background text-foreground;
   }
 
-  /* Added futuristic glass and neon effects */
+  /* Updated glass effects for both light and dark themes */
   .glass {
-    @apply backdrop-blur-xl bg-white/5 border border-white/10 shadow-2xl;
-  }
-  .glass-card {
-    @apply backdrop-blur-2xl bg-white/5 border border-white/5 shadow-2xl;
-  }
-  .holo-glass {
-    @apply backdrop-blur-3xl bg-gradient-to-br from-white/10 to-white/5 border border-white/20 shadow-2xl;
+    @apply backdrop-blur-xl border shadow-2xl;
+    background: rgba(255, 255, 255, 0.05);
+    border-color: rgba(255, 255, 255, 0.1);
   }
 
-  /* Fixed CSS syntax by using regular CSS properties instead of @apply with !important */
+  .glass-card {
+    @apply backdrop-blur-2xl border shadow-2xl;
+    background: rgba(255, 255, 255, 0.05);
+    border-color: rgba(255, 255, 255, 0.05);
+  }
+
+  .holo-glass {
+    @apply backdrop-blur-3xl border shadow-2xl;
+    background: linear-gradient(135deg, rgba(255, 255, 255, 0.1), rgba(255, 255, 255, 0.05));
+    border-color: rgba(255, 255, 255, 0.2);
+  }
+
+  /* Updated glass-input styles for both themes */
   .glass-input {
     backdrop-filter: blur(4px);
     background-color: rgba(255, 255, 255, 0.05);
@@ -202,10 +210,11 @@
     box-shadow: 0 0 0 2px rgba(16, 185, 129, 0.2) !important;
   }
 
-  /* Neon glow effects */
+  /* Updated neon glow effects for both themes */
   .neon-glow {
     box-shadow: 0 0 20px rgba(16, 185, 129, 0.3), 0 0 40px rgba(16, 185, 129, 0.1);
   }
+
   .pulse-glow {
     animation: pulse-glow 2s ease-in-out infinite alternate;
   }
@@ -240,14 +249,15 @@
     animation: shimmer 1.5s infinite;
   }
 
-  /* Added smooth gradient animation for CONSTANTA TUR title */
+  /* изменил комментарий с CONSTANTA TUR на PULSE LINE */
+  /* Added smooth gradient animation for PULSE LINE title */
   .smooth-gradient {
     background-size: 200% 200%;
     animation: smooth-gradient 6s ease-in-out infinite;
   }
 }
 
-/* Added custom animations for futuristic effects */
+/* Updated animations for both light and dark themes */
 @keyframes pulse-glow {
   from {
     box-shadow: 0 0 20px rgba(16, 185, 129, 0.3), 0 0 40px rgba(16, 185, 129, 0.1);

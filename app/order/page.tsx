@@ -60,7 +60,7 @@ function OrderPageContent() {
                 />
               </div>
               <div className="hidden sm:block">
-                <h2 className="text-xl font-bold font-space-grotesk kinetic-text">CONSTANTA TUR</h2>
+                <h2 className="text-xl font-bold font-space-grotesk kinetic-text">PULSE LINE</h2>
                 <p className="text-xs text-muted-foreground">На главную</p>
               </div>
               <motion.svg

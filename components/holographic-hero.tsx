@@ -82,7 +82,7 @@ export function HolographicHero() {
         <div className="mb-8">
           <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold font-space-grotesk mb-4 leading-tight">
             <span className="bg-gradient-to-r from-primary via-secondary to-accent bg-clip-text text-transparent smooth-gradient whitespace-nowrap">
-              CONSTANTA TUR
+              PULSE LINE
             </span>
           </h1>
           <div className="h-16 flex items-center justify-center">

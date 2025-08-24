@@ -1,7 +1,6 @@
 "use client"
 
 import type React from "react"
-
 import { useState, useEffect } from "react"
 import { Button } from "@/components/ui/button"
 import { Card, CardContent } from "@/components/ui/card"
@@ -10,19 +9,20 @@ import { Textarea } from "@/components/ui/textarea"
 import { Star, Send } from "lucide-react"
 import Link from "next/link"
 import { motion } from "framer-motion"
+import { supabase } from "@/lib/supabase"
 
 interface Review {
   id: string
-  firstName: string
-  lastName: string
-  text: string
+  name: string
   rating: number
-  date: string
+  comment: string
+  created_at: string
 }
 
 export default function ReviewsPage() {
   const [reviews, setReviews] = useState<Review[]>([])
   const [showForm, setShowForm] = useState(false)
+  const [loading, setLoading] = useState(true)
   const [formData, setFormData] = useState({
     firstName: "",
     lastName: "",
@@ -31,77 +31,73 @@ export default function ReviewsPage() {
   })
 
   useEffect(() => {
-    const savedReviews = localStorage.getItem("constanta-reviews")
-    if (savedReviews) {
-      setReviews(JSON.parse(savedReviews))
-    } else {
-      // Default reviews
-      const defaultReviews: Review[] = [
-        {
-          id: "1",
-          firstName: "Анна",
-          lastName: "Петрова",
-          text: "Отличный сервис! Поездка в Берлин прошла комфортно и без задержек. Водитель был очень вежливым.",
-          rating: 5,
-          date: "2024-01-15",
-        },
-        {
-          id: "2",
-          firstName: "Михаил",
-          lastName: "Иванов",
-          text: "Пользуюсь услугами уже второй раз. Всё организовано на высшем уровне. Рекомендую!",
-          rating: 5,
-          date: "2024-01-10",
-        },
-        {
-          id: "3",
-          firstName: "Елена",
-          lastName: "Сидорова",
-          text: "Быстро и надёжно доставили посылку в Варшаву. Цены адекватные, сервис качественный.",
-          rating: 4,
-          date: "2024-01-05",
-        },
-      ]
-      setReviews(defaultReviews)
-      localStorage.setItem("constanta-reviews", JSON.stringify(defaultReviews))
-    }
+    loadReviews()
   }, [])
+
+  const loadReviews = async () => {
+    try {
+      const { data, error } = await supabase.from("reviews").select("*").order("created_at", { ascending: false })
+
+      if (error) {
+        console.error("Error loading reviews:", error)
+        return
+      }
+
+      setReviews(data || [])
+    } catch (error) {
+      console.error("Error loading reviews:", error)
+    } finally {
+      setLoading(false)
+    }
+  }
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
 
-    const newReview: Review = {
-      id: Date.now().toString(),
-      firstName: formData.firstName,
-      lastName: formData.lastName,
-      text: formData.text,
-      rating: formData.rating,
-      date: new Date().toISOString().split("T")[0],
-    }
-
-    const updatedReviews = [newReview, ...reviews]
-    setReviews(updatedReviews)
-    localStorage.setItem("constanta-reviews", JSON.stringify(updatedReviews))
-
-    // Reset form
-    setFormData({ firstName: "", lastName: "", text: "", rating: 5 })
-    setShowForm(false)
-
-    // Send to Telegram
     try {
-      await fetch("/api/telegram", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({
-          type: "review",
-          firstName: formData.firstName,
-          lastName: formData.lastName,
-          text: formData.text,
-          rating: formData.rating,
-        }),
-      })
+      const { data, error } = await supabase
+        .from("reviews")
+        .insert([
+          {
+            name: `${formData.firstName} ${formData.lastName}`,
+            rating: formData.rating,
+            comment: formData.text,
+          },
+        ])
+        .select()
+
+      if (error) {
+        console.error("Error saving review:", error)
+        alert("Ошибка при сохранении отзыва. Попробуйте еще раз.")
+        return
+      }
+
+      // Reset form
+      setFormData({ firstName: "", lastName: "", text: "", rating: 5 })
+      setShowForm(false)
+
+      // Reload reviews
+      await loadReviews()
+
+      // Send to Telegram
+      try {
+        await fetch("/api/telegram", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({
+            type: "review",
+            firstName: formData.firstName,
+            lastName: formData.lastName,
+            text: formData.text,
+            rating: formData.rating,
+          }),
+        })
+      } catch (error) {
+        console.error("Error sending review to Telegram:", error)
+      }
     } catch (error) {
-      console.error("Error sending review to Telegram:", error)
+      console.error("Error submitting review:", error)
+      alert("Ошибка при отправке отзыва. Попробуйте еще раз.")
     }
   }
 
@@ -165,7 +161,7 @@ export default function ReviewsPage() {
                 />
               </div>
               <div className="hidden sm:block">
-                <h2 className="text-xl font-bold font-space-grotesk kinetic-text">CONSTANTA TUR</h2>
+                <h2 className="text-xl font-bold font-space-grotesk kinetic-text">PULSE LINE</h2>
                 <p className="text-xs text-muted-foreground">На главную</p>
               </div>
               <motion.svg
@@ -356,32 +352,39 @@ export default function ReviewsPage() {
             transition={{ duration: 0.8, delay: 0.4 }}
             className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6"
           >
-            {reviews.map((review, index) => (
-              <motion.div
-                key={review.id}
-                initial={{ opacity: 0, y: 30 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.6, delay: index * 0.1 }}
-              >
-                <Card className="glass-card hover:scale-105 transition-all duration-300 h-full">
-                  <CardContent className="p-6">
-                    <div className="flex items-center justify-between mb-4">
-                      <div>
-                        <h4 className="font-semibold text-lg">
-                          {review.firstName} {review.lastName}
-                        </h4>
-                        <p className="text-sm text-muted-foreground">{review.date}</p>
+            {loading ? (
+              <div className="col-span-full text-center py-12">
+                <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-primary mx-auto"></div>
+                <p className="mt-4 text-muted-foreground">Загрузка отзывов...</p>
+              </div>
+            ) : (
+              reviews.map((review, index) => (
+                <motion.div
+                  key={review.id}
+                  initial={{ opacity: 0, y: 30 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.6, delay: index * 0.1 }}
+                >
+                  <Card className="glass-card hover:scale-105 transition-all duration-300 h-full">
+                    <CardContent className="p-6">
+                      <div className="flex items-center justify-between mb-4">
+                        <div>
+                          <h4 className="font-semibold text-lg">{review.name}</h4>
+                          <p className="text-sm text-muted-foreground">
+                            {new Date(review.created_at).toLocaleDateString("ru-RU")}
+                          </p>
+                        </div>
+                        {renderStars(review.rating)}
                       </div>
-                      {renderStars(review.rating)}
-                    </div>
-                    <p className="text-muted-foreground leading-relaxed">{review.text}</p>
-                  </CardContent>
-                </Card>
-              </motion.div>
-            ))}
+                      <p className="text-muted-foreground leading-relaxed">{review.comment}</p>
+                    </CardContent>
+                  </Card>
+                </motion.div>
+              ))
+            )}
           </motion.div>
 
-          {reviews.length === 0 && (
+          {!loading && reviews.length === 0 && (
             <motion.div
               initial={{ opacity: 0, y: 30 }}
               animate={{ opacity: 1, y: 0 }}
