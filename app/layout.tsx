@@ -1,17 +1,17 @@
 import type React from "react"
 import type { Metadata } from "next"
-import { DM_Sans, Space_Grotesk } from "next/font/google"
+import { Rubik, Manrope } from "next/font/google"
 import "./globals.css"
 
-const dmSans = DM_Sans({
-  subsets: ["latin", "cyrillic"], // добавил cyrillic для русского текста
+const dmSans = Rubik({
+  subsets: ["latin", "cyrillic"],
   weight: ["400", "500", "600", "700"],
   variable: "--font-dm-sans",
   display: "swap",
 })
 
-const spaceGrotesk = Space_Grotesk({
-  subsets: ["latin", "cyrillic"], // добавил cyrillic для русского текста
+const spaceGrotesk = Manrope({
+  subsets: ["latin", "cyrillic"],
   weight: ["400", "500", "600", "700"],
   variable: "--font-space-grotesk",
   display: "swap",
