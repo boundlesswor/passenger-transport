@@ -1,0 +1,6 @@
+User-agent: *
+Allow: /
+Sitemap: https://pulselines.com/sitemap.xml
+
+# Закрываем API endpoints от индексации
+Disallow: /api/
