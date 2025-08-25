@@ -98,10 +98,10 @@ export function HolographicHero() {
             <MobileFeatureDrawer features={heroFeatures} />
           </div>
 
-          <div className="flex flex-col gap-3 items-center">
+          <div className="flex flex-col gap-3 items-center max-w-xs mx-auto">
             <Button
               size="lg"
-              className="w-full h-14 text-lg pr-12 neon-glow pulse-glow hover:scale-105 transition-all duration-300 font-space-grotesk relative"
+              className="w-full h-12 sm:h-14 text-base sm:text-lg pr-10 sm:pr-12 neon-glow pulse-glow hover:scale-105 transition-all duration-300 font-space-grotesk relative"
               onClick={() => {
                 const routesSection = document.getElementById("routes-section")
                 if (routesSection) {
@@ -110,7 +110,7 @@ export function HolographicHero() {
               }}
             >
               <svg
-                className="w-5 h-5 absolute left-4 top-1/2 -translate-y-1/2"
+                className="w-4 h-4 sm:w-5 sm:h-5 absolute left-3 sm:left-4 top-1/2 -translate-y-1/2"
                 fill="none"
                 stroke="currentColor"
                 viewBox="0 0 24 24"
@@ -128,17 +128,17 @@ export function HolographicHero() {
                   d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"
                 />
               </svg>
-              <span className="text-center flex-1">Забронировать поездку</span>
+              <span className="text-center flex-1 px-2">Забронировать поездку</span>
             </Button>
 
             <Link href="/send-package" className="w-full">
               <Button
                 variant="outline"
                 size="lg"
-                className="w-full h-14 text-lg pr-12 holo-glass hover:scale-105 transition-all duration-300 font-space-grotesk bg-transparent relative"
+                className="w-full h-12 sm:h-14 text-base sm:text-lg pr-10 sm:pr-12 holo-glass hover:scale-105 transition-all duration-300 font-space-grotesk bg-transparent relative"
               >
                 <svg
-                  className="w-5 h-5 absolute left-4 top-1/2 -translate-y-1/2"
+                  className="w-4 h-4 sm:w-5 sm:h-5 absolute left-3 sm:left-4 top-1/2 -translate-y-1/2"
                   fill="none"
                   stroke="currentColor"
                   viewBox="0 0 24 24"
@@ -150,8 +150,8 @@ export function HolographicHero() {
                     d="M20 7l-8-4-8 4m16 0l-8 4m8-4v10l-8 4m0-10L4 7m8 4v10M4 7v10l8 4"
                   />
                 </svg>
-                <span className="text-center flex-1">Отправить посылку</span>
-                <ArrowRight className="w-5 h-5 absolute right-4 top-1/2 -translate-y-1/2" />
+                <span className="text-center flex-1 px-2">Отправить посылку</span>
+                <ArrowRight className="w-4 h-4 sm:w-5 sm:h-5 absolute right-3 sm:right-4 top-1/2 -translate-y-1/2" />
               </Button>
             </Link>
 
@@ -159,11 +159,11 @@ export function HolographicHero() {
               <Button
                 variant="outline"
                 size="lg"
-                className="w-full h-14 text-lg pr-12 holo-glass hover:scale-105 transition-all duration-300 font-space-grotesk bg-transparent relative"
+                className="w-full h-12 sm:h-14 text-base sm:text-lg pr-10 sm:pr-12 holo-glass hover:scale-105 transition-all duration-300 font-space-grotesk bg-transparent relative"
               >
-                <Star className="w-5 h-5 absolute left-4 top-1/2 -translate-y-1/2" />
-                <span className="text-center flex-1">Просмотреть отзывы</span>
-                <ArrowRight className="w-5 h-5 absolute right-4 top-1/2 -translate-y-1/2" />
+                <Star className="w-4 h-4 sm:w-5 sm:h-5 absolute left-3 sm:left-4 top-1/2 -translate-y-1/2" />
+                <span className="text-center flex-1 px-2">Просмотреть отзывы</span>
+                <ArrowRight className="w-4 h-4 sm:w-5 sm:h-5 absolute right-3 sm:right-4 top-1/2 -translate-y-1/2" />
               </Button>
             </Link>
           </div>
