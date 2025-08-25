@@ -19,15 +19,37 @@ const spaceGrotesk = Space_Grotesk({
 })
 
 export const metadata: Metadata = {
-  title: "PULSE LINE | Революционные перевозки по Европе",
+  title: "PULSE LINE | Пассажирские перевозки и доставка посылок по Европе",
   description:
-    "Футуристические пассажирские перевозки с интерактивной 3D картой. Голографический опыт бронирования поездок по Европе.",
+    "Пассажирские перевозки из СНГ в Европу. Автобусы в Германию, Польшу, Литву. Доставка посылок. Бронирование онлайн. Безопасно и комфортно.",
   generator: "v0.app",
-  keywords: "пассажирские перевозки, микроавтобус, Европа, трансфер, поездки, 3D карта, голографический",
+  keywords:
+    "пассажирские перевозки Европа, автобус в Германию, автобус в Польшу, доставка посылок в Европу, международные перевозки, трансфер СНГ Европа, микроавтобус, поездки в Европу",
+  robots: "index, follow",
   openGraph: {
-    title: "PULSE LINE | Революционные перевозки",
-    description: "Футуристические поездки с интерактивной 3D картой Европы",
+    title: "PULSE LINE | Пассажирские перевозки по Европе",
+    description: "Пассажирские перевозки и доставка посылок из СНГ в Европу. Забронируйте поездку онлайн.",
     type: "website",
+    url: "https://pulselines.com/",
+    siteName: "PULSE LINE",
+    locale: "ru_RU",
+    images: [
+      {
+        url: "https://pulselines.com/favicon.png",
+        width: 512,
+        height: 512,
+        alt: "PULSE LINE - Пассажирские перевозки по Европе",
+      },
+    ],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "PULSE LINE | Пассажирские перевозки по Европе",
+    description: "Пассажирские перевозки и доставка посылок из СНГ в Европу",
+    images: ["https://pulselines.com/favicon.png"],
+  },
+  alternates: {
+    canonical: "https://pulselines.com/",
   },
 }
 
