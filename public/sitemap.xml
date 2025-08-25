@@ -1,28 +1,39 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+  
   <url>
     <loc>https://pulselines.com/</loc>
     <priority>1.0</priority>
     <changefreq>weekly</changefreq>
+    <lastmod>2025-08-25</lastmod>
   </url>
+
   <url>
     <loc>https://pulselines.com/order</loc>
     <priority>0.9</priority>
     <changefreq>monthly</changefreq>
+    <lastmod>2025-08-25</lastmod>
   </url>
+
   <url>
     <loc>https://pulselines.com/send-package</loc>
     <priority>0.9</priority>
     <changefreq>monthly</changefreq>
+    <lastmod>2025-08-25</lastmod>
   </url>
+
   <url>
     <loc>https://pulselines.com/reviews</loc>
     <priority>0.8</priority>
     <changefreq>weekly</changefreq>
+    <lastmod>2025-08-25</lastmod>
   </url>
+
   <url>
     <loc>https://pulselines.com/dispatcher</loc>
     <priority>0.7</priority>
     <changefreq>monthly</changefreq>
+    <lastmod>2025-08-25</lastmod>
   </url>
+
 </urlset>
