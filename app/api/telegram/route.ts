@@ -10,7 +10,7 @@ export async function POST(request: NextRequest) {
   try {
     const data = await request.json()
 
-    const botToken = "8233052136:AAEbjcmaxBa_R7cSSqCbWH5QAocUNYzGb7o"
+    const botToken = process.env.TELEGRAM_BOT_TOKEN
     const chatId = process.env.TELEGRAM_CHAT_ID || "8159146710"
 
     if (!botToken) {
