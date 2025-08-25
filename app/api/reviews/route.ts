@@ -1,10 +1,14 @@
+export const runtime = "edge"
+
 import { createClient } from "@supabase/supabase-js"
 import { type NextRequest, NextResponse } from "next/server"
 
 const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL!
 const supabaseKey = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!
 
-const supabase = createClient(supabaseUrl, supabaseKey)
+const supabase = createClient(supabaseUrl, supabaseKey, {
+  auth: { persistSession: false },
+})
 
 // GET - получить все отзывы
 export async function GET() {
@@ -56,14 +60,17 @@ export async function POST(request: NextRequest) {
 
     // Отправка в Telegram
     try {
-      const telegramResponse = await fetch("/api/telegram", {
+      const telegramUrl = `${process.env.VERCEL_URL ? "https://" + process.env.VERCEL_URL : "http://localhost:3000"}/api/telegram`
+
+      const telegramResponse = await fetch(telegramUrl, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
           type: "review",
-          name,
+          firstName: name.split(" ")[0] || name,
+          lastName: name.split(" ").slice(1).join("") || "",
           rating,
-          comment,
+          text: comment,
         }),
       })
 
