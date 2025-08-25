@@ -1,21 +1,22 @@
-import type React from "react"
-import type { Metadata } from "next"
-import { Rubik, Manrope } from "next/font/google"
-import "./globals.css"
+// app/layout.tsx
+import type React from "react";
+import type { Metadata } from "next";
+import { Rubik, Manrope } from "next/font/google";
+import "./globals.css";
 
 const dmSans = Rubik({
   subsets: ["latin", "cyrillic"],
   weight: ["400", "500", "600", "700"],
   variable: "--font-dm-sans",
   display: "swap",
-})
+});
 
 const spaceGrotesk = Manrope({
   subsets: ["latin", "cyrillic"],
   weight: ["400", "500", "600", "700"],
   variable: "--font-space-grotesk",
   display: "swap",
-})
+});
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://pulselines.com"),
@@ -58,7 +59,7 @@ export const metadata: Metadata = {
       "Международные автобусные перевозки и доставка посылок по Европе, Украине, России и Беларуси. Комфортные поездки, надёжная доставка.",
     images: [
       {
-        url: "/og-cover.jpg", // изменил на правильный размер для соцсетей
+        url: "/og-cover.jpg",
         width: 1200,
         height: 630,
         alt: "PULSE LINE — международные перевозки и доставка посылок",
@@ -68,31 +69,28 @@ export const metadata: Metadata = {
   twitter: {
     card: "summary_large_image",
     title: "PULSE LINE — международные перевозки и доставка посылок",
-    description: "Поездки по Европе и доставка посылок: Европа ⇄ Украина, Россия, Беларусь.",
+    description:
+      "Поездки по Европе и доставка посылок: Европа ⇄ Украина, Россия, Беларусь.",
     images: ["/og-cover.jpg"],
   },
   alternates: {
     canonical: "https://pulselines.com/",
-    languages: {
-      "ru-RU": "https://pulselines.com/",
-    },
+    languages: { "ru-RU": "https://pulselines.com/" },
   },
-  themeColor: "#0A0F1F", // добавил цвет темы
+  themeColor: "#0A0F1F",
   icons: {
     icon: "/favicon.png",
     apple: "/apple-touch-icon.png",
   },
   verification: {
-    google: "", // добавил поля для верификации (заполнить позже)
+    google: "",
     yandex: "",
   },
-}
+};
 
 export default function RootLayout({
   children,
-}: Readonly<{
-  children: React.ReactNode
-}>) {
+}: Readonly<{ children: React.ReactNode }>) {
   return (
     <html lang="ru" className={`${dmSans.variable} ${spaceGrotesk.variable}`}>
       <head>
@@ -104,7 +102,6 @@ export default function RootLayout({
             --font-space-grotesk: ${spaceGrotesk.variable};
           }
         `}</style>
-
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{
@@ -122,7 +119,9 @@ export default function RootLayout({
           }}
         />
       </head>
-      <body className="font-sans antialiased bg-background text-foreground">{children}</body>
+      <body className="font-sans antialiased bg-background text-foreground">
+        {children}
+      </body>
     </html>
-  )
+  );
 }
