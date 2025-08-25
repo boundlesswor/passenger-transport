@@ -1,6 +1,11 @@
+# Разрешаем индексировать всё
 User-agent: *
 Allow: /
-Sitemap: https://pulselines.com/sitemap.xml
 
-# Закрываем API endpoints от индексации
+# Закрываем служебные папки
 Disallow: /api/
+Disallow: /_next/
+Disallow: /static/
+
+# Указываем карту сайта
+Sitemap: https://pulselines.com/sitemap.xml
