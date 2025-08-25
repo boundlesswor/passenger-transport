@@ -2,54 +2,89 @@ import type React from "react"
 import type { Metadata } from "next"
 import { DM_Sans, Space_Grotesk } from "next/font/google"
 import "./globals.css"
-// удаляю импорт ThemeToggle
 
 const dmSans = DM_Sans({
-  subsets: ["latin"],
+  subsets: ["latin", "cyrillic"], // добавил cyrillic для русского текста
   weight: ["400", "500", "600", "700"],
   variable: "--font-dm-sans",
   display: "swap",
 })
 
 const spaceGrotesk = Space_Grotesk({
-  subsets: ["latin"],
+  subsets: ["latin", "cyrillic"], // добавил cyrillic для русского текста
   weight: ["400", "500", "600", "700"],
   variable: "--font-space-grotesk",
   display: "swap",
 })
 
 export const metadata: Metadata = {
-  title: "PULSE LINE | Пассажирские перевозки и доставка посылок по Европе",
+  metadataBase: new URL("https://pulselines.com"),
+  title: {
+    default: "PULSE LINE — международные перевозки и доставка посылок",
+    template: "%s | PULSE LINE",
+  },
   description:
-    "Пассажирские перевозки из СНГ в Европу. Автобусы в Германию, Польшу, Литву. Доставка посылок. Бронирование онлайн. Безопасно и комфортно.",
-  generator: "v0.app",
-  keywords:
-    "пассажирские перевозки Европа, автобус в Германию, автобус в Польшу, доставка посылок в Европу, международные перевозки, трансфер СНГ Европа, микроавтобус, поездки в Европу",
-  robots: "index, follow",
+    "PULSE LINE — международные пассажирские перевозки и доставка посылок: Европа ⇄ Украина, Россия, Беларусь. Поездки автобусами/микроавтобусами, отправка документов, личных вещей и хрупких грузов. Комфортно, надёжно, по доступной цене.",
+  keywords: [
+    "пассажирские перевозки Европа",
+    "автобус Украина Европа",
+    "перевозки Украина Россия",
+    "перевозки Беларусь Европа",
+    "автобус Киев Варшава",
+    "доставка посылок Европа",
+    "отправка документов и личных вещей",
+    "перевозки хрупких грузов",
+    "Pulse Lines",
+    "Пульс Лайн отзывы",
+  ],
+  robots: {
+    index: true,
+    follow: true,
+    googleBot: {
+      index: true,
+      follow: true,
+      "max-snippet": -1,
+      "max-image-preview": "large",
+      "max-video-preview": -1,
+    },
+  },
   openGraph: {
-    title: "PULSE LINE | Пассажирские перевозки по Европе",
-    description: "Пассажирские перевозки и доставка посылок из СНГ в Европу. Забронируйте поездку онлайн.",
     type: "website",
     url: "https://pulselines.com/",
     siteName: "PULSE LINE",
     locale: "ru_RU",
+    title: "PULSE LINE — международные перевозки и доставка посылок",
+    description:
+      "Международные автобусные перевозки и доставка посылок по Европе, Украине, России и Беларуси. Комфортные поездки, надёжная доставка.",
     images: [
       {
-        url: "https://pulselines.com/favicon.png",
-        width: 512,
-        height: 512,
-        alt: "PULSE LINE - Пассажирские перевозки по Европе",
+        url: "/og-cover.jpg", // изменил на правильный размер для соцсетей
+        width: 1200,
+        height: 630,
+        alt: "PULSE LINE — международные перевозки и доставка посылок",
       },
     ],
   },
   twitter: {
     card: "summary_large_image",
-    title: "PULSE LINE | Пассажирские перевозки по Европе",
-    description: "Пассажирские перевозки и доставка посылок из СНГ в Европу",
-    images: ["https://pulselines.com/favicon.png"],
+    title: "PULSE LINE — международные перевозки и доставка посылок",
+    description: "Поездки по Европе и доставка посылок: Европа ⇄ Украина, Россия, Беларусь.",
+    images: ["/og-cover.jpg"],
   },
   alternates: {
     canonical: "https://pulselines.com/",
+    languages: {
+      "ru-RU": "https://pulselines.com/",
+    },
+  },
+  themeColor: "#0A0F1F", // добавил цвет темы
+  icons: {
+    icon: "/favicon.png",
+    apple: "/apple-touch-icon.png",
+  },
+  verification: {
+    google: "", // добавил поля для верификации (заполнить позже)
+    yandex: "",
   },
 }
 
@@ -63,12 +98,29 @@ export default function RootLayout({
       <head>
         <link rel="icon" type="image/png" href="/favicon.png" />
         <style>{`
-html {
-  font-family: ${dmSans.style.fontFamily};
-  --font-sans: ${dmSans.variable};
-  --font-space-grotesk: ${spaceGrotesk.variable};
-}
+          html {
+            font-family: ${dmSans.style.fontFamily};
+            --font-sans: ${dmSans.variable};
+            --font-space-grotesk: ${spaceGrotesk.variable};
+          }
         `}</style>
+
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify({
+              "@context": "https://schema.org",
+              "@type": "Organization",
+              name: "PULSE LINE",
+              url: "https://pulselines.com",
+              logo: "https://pulselines.com/favicon.png",
+              description:
+                "Международные пассажирские перевозки и доставка посылок: Европа ⇄ Украина, Россия, Беларусь.",
+              areaServed: ["EU", "UA", "RU", "BY"],
+              brand: "PULSE LINE",
+            }),
+          }}
+        />
       </head>
       <body className="font-sans antialiased bg-background text-foreground">{children}</body>
     </html>
